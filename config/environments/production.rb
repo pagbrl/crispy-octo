@@ -58,7 +58,7 @@ Rails.application.configure do
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  Use a real queuing backend for Active Job (and separate queues per environment).
+  # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter     = :resque
   config.active_job.queue_name_prefix = "crispy_octo_production"
 
@@ -101,5 +101,5 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5,
   }
-
+  config.secret_key_base = 'blipblapblup'
 end

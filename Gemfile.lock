@@ -244,7 +244,7 @@ DEPENDENCIES
   dotenv-rails
   importmap-rails
   jbuilder
-  mysql2
+  pg
   net-http
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
