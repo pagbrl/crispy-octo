@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile.dev
     ports:
       - "3000:3000"
     depends_on:
@@ -17,4 +17,4 @@ services:
       MYSQL_USER: your_mysql_username
       MYSQL_PASSWORD: your_mysql_password
   redis:
-    image: redis:latest
+    image: redis:alpine
