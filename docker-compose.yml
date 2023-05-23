@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - RAILS_ENV
+      - MARIADB_HOS
+      - MARIADB_PORT
+      - MARIADB_DATABASE
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+      - DATABASE_URL
+    networks:
+      - mynetwork
+    links:
+      - crispy-octo-mariadb:mariadb.host
+    restart: always
+  crispy-octo-mariadb:
+    image: "mariadb:10.6"
+    container_name: crispy-octo-mariadb
+    volumes:
+        - "._mysql_data_dir/:/var/lib/mysql"
+    environment:
+      - MARIADB_ROOT_PASSWORD=pass
+      - MARIADB_DATABASE
+    ports:
+      - 3306:3306
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+
