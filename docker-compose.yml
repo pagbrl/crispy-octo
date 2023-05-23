@@ -6,11 +6,18 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
+    links:
+      - db:mysql
     depends_on:
       - db
   db:
     image: mysql:5.7
     restart: always
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      # - MYSQL_ROOT_PASSWORD=root
+      # - MYSQL_PASSWORD=root
+      - MYSQL_DATABASE=crispy_octo_development
     ports:
       - "3306:3306"
     volumes:
