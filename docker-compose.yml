@@ -6,15 +6,20 @@ services:
       dockerfile: docker/Dockerfile.dev
     ports:
       - "3000:3000"
+    environment:
+      - DATABASE_URL
+      - EMAIL_PORT
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
     depends_on:
       - db
       - redis
   db:
     image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: your_mysql_root_password
-      MYSQL_DATABASE: your_mysql_database
-      MYSQL_USER: your_mysql_username
-      MYSQL_PASSWORD: your_mysql_password
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
   redis:
     image: redis:alpine
