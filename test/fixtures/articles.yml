@@ -1,0 +1,40 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  title: I'm leaving YouTube 📹
+  body: |
+    Moon shared order safe. Sprinters abomination homeless East-farthing current avenged appointed alone.\n
+    Stink ten wine treacherous Sauron ntil turned horror might've why. Wolf's mold labeled girl kin cries counter Ringwraiths leaf bait summoning. Fire raised wasteland fresh block money Wood-elves knocked. Ilk smirking task awoken everything's Orcses beards wise ting wished offering. Nobody tosses a Dwarf. Nonsense Samwise Gamgee feet fathers wane metals? Riddermark conkers honorable unleash threw deserted drop soft breathe irregular woodlands goes.\n
+    Stroke Kingdom when party falls weeks! Whim roaring endless grandfather 20 shade spike Gibbets frying faithless. Forces Lembas unnoticed mean pupil chamomile riven prisoner. Smelling razors Glamdring night busy deeply care wanes protected tomatoes looks! Elderly chap. Big grey beard, pointy hat. Veins belly usual heavy canting bosun's well-protected champ but Crebain. Wax burglar first shine lower spends cursed arrows Arwen Evenstar lift? Bold halfling's liar Elfling look.
+  status: public
+  created_at: <%= 5.day.ago.to_s(:db) %>
+  updated_at: <%= 5.day.ago.to_s(:db) %>
+
+two:
+  id: 2
+  title: I'm REALLY leaving YouTube 🏄‍♂️
+  body: |
+    Long bois heck long doggo extremely cuuuuuute h*ck, vvv very hand that feed shibe very jealous pupper. Clouds length boy maximum borkdrive super chub extremely cuuuuuute, smol borking doggo with a long snoot for pats shoober.\n
+    Big ol pupper I am bekom fat extremely cuuuuuute super chub many pats very good spot noodle horse boofers, heck ruff sub woofer big ol pupper wow such tempt. Wow very biscit doggorino pupperino very good spot, shibe.\n
+    Heckin good boys woofer many pats pupperino such treat, borking doggo pats. Bork lotsa pats boofers sub woofer puggo heckin angery woofer shoob noodle horse, h*ck woofer most angery pupper I have ever seen shooberino pupper maximum borkdrive. Clouds blep floofs fluffer heck, thicc doge waggy wags.\n
+    Doing me a frighten borkdrive snoot stop it fren doggo, very taste wow long doggo. Sub woofer boof boofers long bois h*ck the neighborhood pupper, length boy I am bekom fat long water shoob puggorino, snoot yapper most angery pupper I have ever seen bork. wow such tempt borking doggo shoob.\n
+    floofs super chub long bois. Heck pupperino length boy such treat pupper, adorable doggo aqua doggo. Wow very biscit borkf floofs such treat borkf long bois, the neighborhood pupper woofer doing me a frighten maximum borkdrive h*ck, smol borking doggo with a long snoot for pats ur givin me a spook doge aqua doggo.\n
+    Dat tungg tho puggorino the neighborhood pupper borking doggo dat tungg tho very good spot sub woofer I am bekom fat, puggorino he made many woofs waggy wags long bois maximum borkdrive smol borking doggo with a long snoot for pats. The neighborhood pupper length boy tungg wow very biscit length boy pupperino, maximum borkdrive stop it fren much ruin diet shoob aqua doggo h*ck, ur givin me a spook very hand that feed shibe you are doing me a frighten waggy wags. Yapper what a nice floof he made many woofs snoot shoober, bork borking doggo. I am bekom fat you are doing me the shock puggo mlem length boy, h*ck heckin good boys and girls you are doin me a concern lotsa pats, very good spot puggorino porgo. Most angery pupper I have ever seen he made many woofs aqua doggo, such treat. Pupperino very hand that feed shibe snoot aqua doggo, adorable doggo. porgo fluffer puggorino. Many pats doing me a frighten big ol pupper fat boi, borkf. noodle horse. You are doing me a frighten very taste wow borkdrive puggorino noodle horse, shooberino heckin good boys and girls. Doggo boofers snoot, big ol.
+  status: public
+  created_at: <%= 3.day.ago.to_s(:db) %>
+  updated_at: <%= 3.day.ago.to_s(:db) %>
+
+three:
+  id: 3
+  title: Ok, I'm back with a new concept 🌱
+  body: |
+    I reopened my YouTube channel with a brand new concept that's very disruptive, I can't wait to show you.
+    Thicc noodle horse long woofer ur givin me a spook borkdrive, maximum borkdrive big ol pupper pupper. Snoot borking doggo the neighborhood pupper doggorino, big ol. Pats shoob doggorino heck, wrinkler. very hand that feed shibe. H*ck extremely cuuuuuute blep aqua doggo puggorino, extremely cuuuuuute heckin good boys. Very jealous pupper long woofer blop blep, many pats lotsa pats, puggo woofer.
+
+    Very good spot snoot long woofer thicc wrinkler extremely cuuuuuute ruff, such treat h*ck shibe smol pats. Shoober heckin doggorino, shibe. Ruff woofer sub woofer aqua doggo pats, dat tungg tho the neighborhood pupper. Wow very biscit long doggo borkdrive doge wow such tempt long bois, clouds long bois shoober. Tungg what a nice floof very good spot noodle horse smol borking doggo with a long snoot for pats, I am bekom fat length boy. Dat tungg tho you are doing me the shock doge maximum borkdrive, blop ur givin me a spook.
+
+    Pupper ruff he made many woofs borking doggo ruff adorable doggo, pats waggy wags shoober. Lotsa pats shoober most angery pupper I have ever seen, shooberino. Extremely cuuuuuute lotsa pats woofer blep, porgo.  Long water shoob extremely cuuuuuute lotsa pats length boy, stop it fren dat tungg tho I am bekom fat, floofs I am bekom fat. Big ol doggorino long bois very taste wow length boy, heckin porgo smol borking doggo with a long snoot for pats big ol pupper, shibe wrinkler waggy wags.  Waggy wags yapper fat boi mlem pupper heckin angery woofer he made many woofs, shooberino ruff big ol pupper. Wow very biscit shibe length boy heckin good boys and girls, shoober. Blop shoober shoob wrinkler many pats, you are doing me a frighten long bois. Very good spot vvv you are doing me a frighten long doggo, I am bekom fat. Smol borking doggo with a long snoot for pats boof such treat many pats, yapper porgo.
+  status: private
+  created_at: <%= 1.day.ago.to_s(:db) %>
+  updated_at: <%= 1.day.ago.to_s(:db) %>

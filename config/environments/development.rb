@@ -25,7 +25,7 @@ Rails.application.configure do
 
     config.cache_store = :memory_store
     config.public_file_server.headers = {
-      "Cache-Control" => "public, max-age=#{2.days.to_i}"
+      "Cache-Control" => "public, max-age=#{2.days.to_i}",
     }
   else
     config.action_controller.perform_caching = false
@@ -58,6 +58,30 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+
+  Rails.logger = Logger.new(STDOUT)
+  Rails.logger.level = Logger::DEBUG
+  Rails.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+
+  Resque.logger = Logger.new(STDOUT)
+  Resque.logger.level = Logger::DEBUG
+  Resque.logger.formatter = Logger::Formatter.new # This is important
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: ENV.fetch("EMAIL_PORT"),
+    user_name: ENV.fetch("EMAIL_USERNAME"),
+    password: ENV.fetch("EMAIL_PASSWORD"),
+    authentication: "plain",
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5,
+  }
+
+  # Use a real queuing backend for Active Job (and separate queues per environment).
+  config.active_job.queue_adapter     = :resque
+  config.active_job.queue_name_prefix = "crispy_octo_development"
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

@@ -1,0 +1,15 @@
+<%= link_to "<- Back home", admin_root_path %>
+<h2><%= @article.title %></h2>
+<div>
+<%= @article.status %>
+</br>
+<%= @article.created_at %>
+</div>
+
+<p><%= @article.body %></p>
+
+<%= link_to "Edit", edit_admin_article_path(@article) %>
+<%= link_to "Destroy", admin_article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>

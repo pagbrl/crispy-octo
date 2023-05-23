@@ -1,0 +1,14 @@
+<h2>Subscribers</h2>
+
+Our blog has <%= Subscriber.count %> subscribers.
+
+<ul>
+  <% @subscribers.each do |subscriber| %>
+      <li>
+        <%= subscriber.email %> <%= link_to 'Unsubscribe', admin_subscriber_path(subscriber),
+  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+      </li>
+  <% end %>
+
+</ul>
+<%= link_to "New Subscriber", new_admin_subscriber_path %>

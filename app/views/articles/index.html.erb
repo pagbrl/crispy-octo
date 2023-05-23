@@ -1,0 +1,13 @@
+<h2 style="margin: 40px auto;width: 50%; text-align: center;">Latest articles</h2>
+
+<% @articles.each do |article| %>
+  <div style="margin: auto;width: 50%;  background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, darkblue, darkorchid) border-box; border-radius: 9px; border: 6px solid transparent;padding: 5px 10px 5px 10px;">
+    <h3>
+      <%= link_to article.title, article %>
+    </h3>
+    <p style="margin-top: -15px; font-size: 14px; font-style: italic;"> <%= article.created_at.strftime("Posted on %B %d, %Y") %></p>
+    <p> <%= article.body %></p>
+  </div>
+  <br/>
+<% end %>

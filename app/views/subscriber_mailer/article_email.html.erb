@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>New article for AwesomeBlog</h1>
+    <h2> <%= @article.title %> </h2>
+    <p>
+      <%= @article.body %>
+    </p>
+    <p>
+      You are receiving this email because you signed up for our blog articles with the following email : <%= @subscriber.email %>.<br>
+      To visit the blog, just follow this link: <%= @url %>.
+    </p>
+    <p>Thanks for joining and have a great day!</p>
+  </body>
+</html>
