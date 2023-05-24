@@ -29,7 +29,7 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to admin_root_path
+      redirect_to [:admin, @article]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,7 +39,7 @@ class Admin::ArticlesController < ApplicationController
     @article = Article.find(params[:id])
     @article.destroy
 
-    redirect_to admin_root_path
+    redirect_to admin_articles_path, status: :see_other
   end
 
   private
