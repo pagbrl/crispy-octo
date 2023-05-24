@@ -1,4 +1,4 @@
 # Configuration de Resque
 require 'resque'
 
-Resque.redis = "redis://localhost:#{ENV.fetch('REDIS_PORT')}"
+Resque.redis = "redis://redis:#{ENV.fetch('REDIS_PORT')}"

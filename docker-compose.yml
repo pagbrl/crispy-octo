@@ -2,6 +2,8 @@ version: '3'
 services:
   # Main Rails app
   app:
+    env_file:
+      - .env
     build: .
     ports:
       - '${APP_PORT}:${APP_PORT}'
@@ -9,12 +11,28 @@ services:
       - .:/app
     links:
       - db:mysql
+      - redis:redis
     depends_on:
       db:
         condition: service_healthy
     command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
+  worker:
+    env_file:
+      - .env
+    build: .
+    volumes:
+      - .:/app
+    links:
+      - db:mysql
+      - redis:redis
+    depends_on:
+      db:
+        condition: service_healthy
+    command: bundle exec rake environment resque:work QUEUE=*
   # SQL Database
   db:
+    env_file:
+      - .env
     platform: linux/x86_64
     image: mysql:5.7
     restart: always
@@ -34,6 +52,8 @@ services:
       retries: 10
   # Redis
   redis:
+    env_file:
+      - .env
     image: redis:3.2.11
     ports:
       - '${REDIS_PORT}:${REDIS_PORT}'

@@ -92,7 +92,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: ENV.fetch("EMAIL_HOST"),
     port: ENV.fetch("EMAIL_PORT"),
     user_name: ENV.fetch("EMAIL_USERNAME"),
     password: ENV.fetch("EMAIL_PASSWORD"),
