@@ -3,6 +3,7 @@ version: "3.7"
 services:
   db:
     image: "mysql:5.7"
+    platform: linux/amd64
     restart: always
     env_file:
       - .env.docker
@@ -27,20 +28,20 @@ services:
     ports:
       - "6380:6379"
 
-  web-migration:
-    build: .
-    command: bundle exec rails db:migrate
-    env_file:
-      - .env.docker
-    depends_on:
-      db:
-        condition: service_healthy
-    links:
-      - "db"
+  # web-migration:
+  #   build: .
+  #   command: bundle exec rails db:migrate
+  #   env_file:
+  #     - .env.docker
+  #   depends_on:
+  #     db:
+  #       condition: service_healthy
+  #   links:
+  #     - "db"
 
   web:
     build: .
-    command: bundle exec rails s -p 3000 -e production -b '0.0.0.0'
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
     env_file:
       - .env.docker
     volumes:
@@ -50,11 +51,8 @@ services:
     depends_on:
       db:
         condition: service_healthy
-      web-migration:
-        condition: service_completed_successfully
     links:
       - "db"
-      - "web-migration"
 volumes:
   db:
   bundle:
