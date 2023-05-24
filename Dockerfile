@@ -13,5 +13,5 @@ RUN gem install bundler && bundle install --jobs 20 --retry 5
 # Copiez le reste des fichiers de l'application dans le conteneur
 COPY . .
 
-# Exécutez les commandes pour démarrer l'application
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# Exposez le port 3500 que va utiliser Resque
+EXPOSE 3500
