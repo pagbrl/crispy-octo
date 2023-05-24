@@ -1,20 +1,12 @@
-FROM ruby:3.1.3-alpine
+FROM ruby:3.1.3
 
-RUN apk update && apk add --no-cache \
-  curl \
-  vim \
-  jq \
-  git \
-  build-base \
-  mysql-dev 
+WORKDIR /var/www
 
-WORKDIR /crispy-octo
 COPY Gemfile Gemfile.lock ./
 
 RUN bundle install
 
 COPY . .
-RUN cp .env.dist .env
 
 EXPOSE 3000
 

@@ -17,8 +17,8 @@ services:
       - DATABASE_URL
       - REDIS_URL
       - APP_SECRET
-    networks:
-      - mynetwork
+      - EMAIL_FROM
+
     links:
       - crispy-octo-mariadb:mariadb.host
       - "redis:redis.host"
@@ -31,6 +31,7 @@ services:
     command: bundle exec rake environment resque:work QUEUE=*
     restart: always
     links:
+      - crispy-octo-mariadb:mariadb.host
       - "redis:redis.host"
     environment:
       - RAILS_ENV
@@ -43,6 +44,7 @@ services:
       - DATABASE_URL
       - REDIS_URL
       - APP_SECRET
+      - EMAIL_FROM
     depends_on:
       - redis
 
@@ -62,9 +64,4 @@ services:
       - MARIADB_DATABASE
     ports:
       - 3306:3306
-    networks:
-      - mynetwork
-
-networks:
-  mynetwork:
 
