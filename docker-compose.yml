@@ -30,6 +30,9 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.dev
+    links:
+      - "db:mysql.host"
+      - "redis:redis.host"
     ports:
       - "3000:3000"
     environment:
@@ -47,6 +50,8 @@ services:
       - MYSQL_DATABASE
       - MYSQL_USER
       - MYSQL_PASSWORD
+    ports:
+      - "3306:3306"
   redis:
     image: redis:alpine
 
