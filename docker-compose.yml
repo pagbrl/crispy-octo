@@ -8,11 +8,12 @@ services:
       - 3000:3000
     environment:
       - RAILS_ENV
-      - MARIADB_HOS
+      - MARIADB_HOST
       - MARIADB_PORT
       - MARIADB_DATABASE
       - MARIADB_USER
       - MARIADB_PASSWORD
+      - QUEUE=*
       - DATABASE_URL
       - REDIS_URL
       - APP_SECRET
@@ -31,12 +32,10 @@ services:
     restart: always
     links:
       - "redis:redis.host"
-    ports:
-      - 3001:3001
     environment:
       - RAILS_ENV
       - QUEUE=*
-      - MARIADB_HOS
+      - MARIADB_HOST
       - MARIADB_PORT
       - MARIADB_DATABASE
       - MARIADB_USER

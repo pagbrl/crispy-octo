@@ -1,17 +1,21 @@
-FROM ruby:3.1.3
+FROM ruby:3.1.3-alpine
 
-WORKDIR /var/www/
+RUN apk update && apk add --no-cache \
+  curl \
+  vim \
+  jq \
+  git \
+  build-base \
+  mysql-dev 
 
-# Copier les fichiers du projet dans le conteneur
-COPY ./Gemfile ./Gemfile.lock ./
-# Installation des gems
+WORKDIR /crispy-octo
+COPY Gemfile Gemfile.lock ./
+
 RUN bundle install
 
-# Copier le reste des fichiers du projet dans le conteneur
 COPY . .
+RUN cp .env.dist .env
 
-# Exposer le port 3000 pour l'application Rails
 EXPOSE 3000
 
-# Lancer le serveur Rails en tant que commande par défaut
 CMD ["rails", "server", "-b", "0.0.0.0"]
