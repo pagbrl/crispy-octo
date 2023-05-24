@@ -69,7 +69,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: "mail.infomaniak.com",
     port: ENV.fetch("EMAIL_PORT"),
     user_name: ENV.fetch("EMAIL_USERNAME"),
     password: ENV.fetch("EMAIL_PASSWORD"),

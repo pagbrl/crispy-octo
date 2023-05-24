@@ -9,6 +9,7 @@ services:
       - .:/app
     links:
       - db:mysql
+      - redis:redis
     depends_on:
       db:
         condition: service_healthy
