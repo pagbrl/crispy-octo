@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mt4-app-g5
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mt4-app-g5
+  template:
+    metadata:
+      labels:
+        app: mt4-app-g5
+    spec:
+      containers:
+      - name: mt4-app-g5
+        image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
+        ports:
+        - containerPort: <port_conteneur>
