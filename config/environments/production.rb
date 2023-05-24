@@ -53,12 +53,12 @@ Rails.application.configure do
   config.log_level = :info
 
   # Prepend all log lines with the following tags.
-  config.log_tags = [ :request_id ]
+  config.log_tags = [:request_id]
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
-  Use a real queuing backend for Active Job (and separate queues per environment).
+  # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter     = :resque
   config.active_job.queue_name_prefix = "crispy_octo_production"
 
@@ -76,7 +76,7 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = ::Logger::Formatter.new
+  config.log_formatter = Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
@@ -101,5 +101,4 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5,
   }
-
 end
