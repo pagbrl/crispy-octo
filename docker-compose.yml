@@ -4,6 +4,9 @@ services:
     build:
       context: .
       dockerfile: docker/Dockerfile.dev
+    links:
+      - "db:mysql.host"
+      - "redis:redis.host"
     ports:
       - "3000:3000"
     environment:
@@ -16,6 +19,11 @@ services:
       - redis
   db:
     image: mysql:5.7
+    ports:
+      - "3306:3306"
+    volumes:
+        - "._mysql_data_dir/:/var/lib/mysql"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       - MYSQL_ROOT_PASSWORD=your_mysql_root_password
       - MYSQL_DATABASE
