@@ -59,9 +59,9 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  Rails.logger = Logger.new(STDOUT)
-  Rails.logger.level = Logger::DEBUG
-  Rails.logger.datetime_format = "%Y-%m-%d %H:%M:%S"
+  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   Resque.logger = Logger.new(STDOUT)
   Resque.logger.level = Logger::DEBUG
