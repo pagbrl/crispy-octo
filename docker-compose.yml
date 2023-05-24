@@ -15,7 +15,7 @@ services:
       - "3307:3306"
 
   redis:
-    image: redis:4.0-alpine
+    image: redis:7-alpine
     command: redis-server
     env_file:
       - .env.docker
@@ -34,7 +34,16 @@ services:
     ports:
       - "3001:3000"
 
+  web-worker:
+    build: .
+    command: bundle exec sidekiq
+    env_file:
+      - .env.docker
+    volumes:
+      - ".:/app"
+
 volumes:
   db:
-  bundle:
   redis:
+  web:
+  web-worker:
