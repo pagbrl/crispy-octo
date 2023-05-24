@@ -1,15 +1,12 @@
-FROM ruby:3.1.3-alpine
+FROM ruby:3.1.3
 
-RUN apk update && apk add --no-cache \
-  build-base \
+RUN apt update && apt install -y \
+  build-essential \
   nodejs \
-  tzdata \
-  sqlite-dev \
-  mysql-dev \
-  mysql-client \
-  libc-dev \
-  libxml2-dev \
-  libxslt-dev \
+  libsqlite3-dev \
+  default-mysql-client \
+  libxml2 \
+  libxslt1-dev \
   yarn \
   git
 
