@@ -67,7 +67,7 @@ Rails.application.configure do
   Resque.logger.level = Logger::DEBUG
   Resque.logger.formatter = Logger::Formatter.new # This is important
 
-  # config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :smtp
   # config.action_mailer.smtp_settings = {
   #   address: "smtp.sendgrid.net",
   #   port: ENV.fetch("EMAIL_PORT"),

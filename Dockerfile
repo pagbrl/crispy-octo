@@ -5,7 +5,7 @@ FROM ruby:3.1.3
 #   mysql-client \
 #   git
 
-RUN apt-get update
+RUN apt-get update && apt-get install redis-server
 
 WORKDIR /var/www/
 
