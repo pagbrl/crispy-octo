@@ -1,4 +1,4 @@
-FROM ruby:3.1.3 AS builder
+FROM ruby:3.1.3-alpine3.17 AS builder
 
 RUN apt-get update && apt-get install -y \
     build-essential \
@@ -15,7 +15,7 @@ COPY ./ /crispy-octo/
 
 
 
-FROM ruby:3.1.3 AS prod 
+FROM ruby:3.1.3-alpine3.17 AS prod 
 
 WORKDIR /crispy-octo
 

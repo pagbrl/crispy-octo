@@ -1,0 +1,52 @@
+# version: "3"
+# services:
+#   crispy-octo-ruby:
+#     container_name: "crispy-octo-ruby"
+#     build:
+#       dockerfile: "./docker/Dockerfile.dev"
+#       context: "./"
+#     restart: always
+#   db:
+#     image: "mysql"
+#     environment:
+#      - MYSQL_USER
+#      - MYSQL_PASSWORD
+#      - MYSQL_ROOT_PASSWORD
+#      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+#     volumes:
+#       - "._mysql_data_dir/:/var/lib/mysql"
+#     ports:
+#       - "33061:3306"
+#     restart: always
+#   redis:
+#     image: "redis"
+#     command: redis-server
+#     ports:
+#       - "6379:3000"
+
+version: '3'
+services:
+  app:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL
+      - EMAIL_PORT
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
+    depends_on:
+      - db
+      - redis
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=your_mysql_root_password
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+  redis:
+    image: redis:alpine
+
