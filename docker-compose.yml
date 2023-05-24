@@ -1,25 +1,61 @@
-version: "3.9"
+version: "3.7"
 
 services:
   db:
-    image: postgres
+    image: "mysql:5.7"
+    restart: always
+    env_file:
+      - .env.docker
+    expose:
+      - "3307"
+    volumes:
+      - db:/var/run/mysqld
     ports:
-      - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: root
-      POSTGRES_DB: crispy_octo_development
+      - "3307:3306"
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
 
   redis:
-    image: redis
+    image: redis:4.0-alpine
+    command: redis-server
+    env_file:
+      - .env.docker
+    volumes:
+      - redis:/data
+    ports:
+      - "6380:6379"
+
+  web-migration:
+    build: .
+    command: bundle exec rails db:migrate
+    env_file:
+      - .env.docker
+    depends_on:
+      db:
+        condition: service_healthy
+    links:
+      - "db"
 
   web:
     build: .
+    command: bundle exec rails s -p 3000 -e production -b '0.0.0.0'
+    env_file:
+      - .env.docker
+    volumes:
+      - ".:/app"
     ports:
       - "3001:3000"
     depends_on:
-      - db
-      - redis
-    environment:
-      DATABASE_URL: postgres://root@localhost:5432/crispy_octo_development
-      REDIS_URL: redis://redis:6379/0
+      db:
+        condition: service_healthy
+      web-migration:
+        condition: service_completed_successfully
+    links:
+      - "db"
+      - "web-migration"
+volumes:
+  db:
+  bundle:
+  redis:

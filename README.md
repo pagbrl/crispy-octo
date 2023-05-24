@@ -1,24 +1,11 @@
-# README
+# Crispy Octo (group 2)
+- Production URL: TODO
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Install (using Docker)
+### Requirements
+All environment variables stored in `.env.docker`<br/>
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Launch `docker-compose`
+1. ```shell
+   $ docker-compose up --build
+   ```
