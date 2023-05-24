@@ -16,4 +16,7 @@ spec:
       - name: mt4-app-g5
         image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
         ports:
-        - containerPort: <port_conteneur>
+        - containerPort: 3000
+        envFrom:
+          - secretRef:
+              name: prod-env
