@@ -1,9 +1,10 @@
 version: '3'
 services:
+  # Main Rails app
   app:
     build: .
     ports:
-      - "3000:3000"
+      - '${APP_PORT}:${APP_PORT}'
     volumes:
       - .:/app
     links:
@@ -12,20 +13,27 @@ services:
       db:
         condition: service_healthy
     command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
+  # SQL Database
   db:
+    platform: linux/x86_64
     image: mysql:5.7
     restart: always
     environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=true
       # - MYSQL_ROOT_PASSWORD=root
       # - MYSQL_PASSWORD=root
-      - MYSQL_DATABASE=crispy_octo_development
+      - MYSQL_ALLOW_EMPTY_PASSWORD=true
+      - MYSQL_DATABASE=${DB_NAME}
     ports:
-      - "3306:3306"
+      - '${DB_PORT}:${DB_PORT}'
     volumes:
       - ./data:/var/lib/mysql
     command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     healthcheck:
-      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
       timeout: 20s
       retries: 10
+  # Redis
+  redis:
+    image: redis:3.2.11
+    ports:
+      - '${REDIS_PORT}:${REDIS_PORT}'
