@@ -44,8 +44,6 @@ gem "bootsnap", require: false
 
 gem "mysql2"
 
-gem "sidekiq"
-
 gem "net-http"
 
 gem 'resque'
