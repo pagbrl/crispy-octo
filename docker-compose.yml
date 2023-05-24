@@ -9,17 +9,26 @@ services:
       - "redis:redis.host"
     ports:
       - "3000:3000"
+    volumes:
+      - "./:/app"
     environment:
+      - RAILS_ENV
+      - APP_SECRET
       - DATABASE_URL
+      - REDIS_URL
       - EMAIL_PORT
       - EMAIL_USERNAME
       - EMAIL_PASSWORD
+      - EMAIL_FROM
     depends_on:
       - db
       - redis
   db:
     platform: linux/x86_64
     image: mysql:5.7
+    volumes:
+      - "._mysql_data_dir:/var/lib/mysql"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     environment:
       - MYSQL_ROOT_PASSWORD=your_mysql_root_password
       - MYSQL_DATABASE
@@ -31,5 +40,25 @@ services:
     image: redis:alpine
     ports:
       - "6379:6379"
+  worker:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    volumes:
+      - "./:/app"
+    links:
+      - "db:mysql.host"
+      - "redis:redis.host"
+    command: bundle exec rake environment resque:work QUEUE=*
     environment:
+      - RAILS_ENV
+      - APP_SECRET
+      - DATABASE_URL
       - REDIS_URL
+      - EMAIL_PORT
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
+      - EMAIL_FROM
+    depends_on:
+      - db
+      - redis
