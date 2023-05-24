@@ -9,7 +9,9 @@ services:
     links:
       - db:mysql
     depends_on:
-      - db
+      db:
+        condition: service_healthy
+    command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
   db:
     image: mysql:5.7
     restart: always
@@ -22,3 +24,8 @@ services:
       - "3306:3306"
     volumes:
       - ./data:/var/lib/mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
