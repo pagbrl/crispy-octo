@@ -1,0 +1,117 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -f docker-compose.yml
+    kompose.version: 1.28.0 (HEAD)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: app
+  name: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: app
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -f docker-compose.yml
+        kompose.version: 1.28.0 (HEAD)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/mt4-crispy-octo-deployement-e05-default: "true"
+        io.kompose.service: app
+    spec:
+      containers:
+        - args:
+            - bash
+            - -c
+            - chmod +x entrypoint.sh && ./entrypoint.sh
+          env:
+            - name: APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: APP_PORT
+                  name: env
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_URL
+                  name: env
+            - name: DB_NAME
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_NAME
+                  name: env
+            - name: DB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_PORT
+                  name: env
+            - name: DB_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_USER
+                  name: env
+            - name: EMAIL_FROM
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_FROM
+                  name: env
+            - name: EMAIL_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_HOST
+                  name: env
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_PASSWORD
+                  name: env
+            - name: EMAIL_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_PORT
+                  name: env
+            - name: EMAIL_REGEXP
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_REGEXP
+                  name: env
+            - name: EMAIL_USERNAME
+              valueFrom:
+                configMapKeyRef:
+                  key: EMAIL_USERNAME
+                  name: env
+            - name: RAILS_ENV
+              valueFrom:
+                configMapKeyRef:
+                  key: RAILS_ENV
+                  name: env
+            - name: REDIS_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_PORT
+                  name: env
+            - name: SCW_SECRET_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: SCW_SECRET_KEY
+                  name: env
+          image: app
+          name: app
+          ports:
+            - containerPort: 3000
+          resources: {}
+          volumeMounts:
+            - mountPath: /app
+              name: app-claim0
+      restartPolicy: Always
+      volumes:
+        - name: app-claim0
+          persistentVolumeClaim:
+            claimName: app-claim0
+status: {}

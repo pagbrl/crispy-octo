@@ -6,7 +6,7 @@ services:
       - .env
     build: .
     ports:
-      - "${APP_PORT}:${APP_PORT}"
+      - "3000:3000"
     volumes:
       - .:/app
     # links:
