@@ -20,6 +20,11 @@ services:
       - REDIS_URL
       - APP_SECRET
       - EMAIL_FROM
+      - EMAIL_HOST
+      - EMAIL_PORT
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
+      - WEBSITE_HOST
     links:
       - crispy-octo-mariadb:mariadb.host
       - "redis:redis.host"
@@ -48,6 +53,11 @@ services:
       - REDIS_URL
       - APP_SECRET
       - EMAIL_FROM
+      - EMAIL_HOST
+      - EMAIL_PORT
+      - EMAIL_USERNAME
+      - EMAIL_PASSWORD
+      - WEBSITE_HOST
     depends_on:
       - redis
 

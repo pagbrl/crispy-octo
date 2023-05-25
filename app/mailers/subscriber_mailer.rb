@@ -1,13 +1,13 @@
 class SubscriberMailer < ApplicationMailer
   def welcome_email
-    @url = "#{ENV.fetch('SMTP_HOST')}"
+    @url = "#{ENV.fetch('WEBSITE_HOST')}"
     @subscriber = params[:subscriber]
     Rails.logger.info "#{@subscriber.id} - #{@subscriber.email}"
     mail(to: @subscriber.email, subject: "Welcome to the blog !")
   end
 
   def article_email
-    @url = "#{ENV.fetch('SMTP_HOST')}"
+    @url = "#{ENV.fetch('WEBSITE_HOST')}"
     @subscriber = params[:subscriber]
     @article = params[:article]
 
