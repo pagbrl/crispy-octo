@@ -9,6 +9,17 @@ then run the command bash commeand ```make dev```
 
 Launch http://localhost:3000
 
+# Step 3 
+
+The app is now running you can test it by running :
+```make test```
+
+# Step 4
+
+You can also set back to development the env setup when you are done by doing :
+```make env_res```
+
+
 # Troubleshoot
 
 If any error occurs, make sure to have both make and docker install by running ```make -v``` and ```docker -v```.

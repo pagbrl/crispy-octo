@@ -83,12 +83,24 @@ Concerning redis we had to create a resque.rb file and a new variable in the .en
 ### Makefile
 
 In order for the developpers and us to make things easier to start the container we have to build a Makefile.
-It contains as of now only one command ```make dev```
+Let's start with ```make dev```
 This commmand executes this : 
 ```bash
-    docker compose up -d --build
-	@sleep 10
-	docker exec -t crispy-octo-app-1 bundle exec rails db:migrate
-	docker exec -t crispy-octo-app-1 bundle exec rails db:fixtures:load
+docker compose up -d --build
+@sleep 10
+docker exec -t crispy-octo-app-1 bundle exec rails db:migrate
+docker exec -t crispy-octo-app-1 bundle exec rails db:fixtures:load
 ```
 
+Then we have ```make test```
+that includes the following commands: 
+```bash
+docker exec -t crispy-octo-app-1 bundle exec rails db:environment:set RAILS_ENV=test 
+docker exec -t crispy-octo-app-1 bundle exec rails test
+```
+But as you noticed we set the RAILS_ENV to test so we also have a command to change it back to development :
+```make env_res```
+it contains just this command : 
+```bash
+docker exec -t crispy-octo-app-1 bundle exec rails db:environment:set RAILS_ENV=development
+```
