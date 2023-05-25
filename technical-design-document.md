@@ -47,6 +47,13 @@ EXPOSE 3000
 CMD ["rails", "server", "-b", "0.0.0.0"]
 ```
 As opposed to precendently where we tried to import the dependencies with APK
+
+In terms of containers, we have:
+- one for the Database
+- one for Redis
+- one for the service
+- one for the worker.
+
 ##### the .env situation
 concerning the .env : there was none. 
 Hence we had to write one and deduct from all the dependencies, the one we needed but we also had to remove some _hardcoded_ values such as in ```app/mailer/suscriber_mailer.rb``` where a localhost value was written as such : 
