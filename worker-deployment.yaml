@@ -104,7 +104,7 @@ spec:
                 configMapKeyRef:
                   key: SCW_SECRET_KEY
                   name: env
-          image: worker
+          image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
           name: worker
           resources: {}
           volumeMounts:

@@ -27,9 +27,9 @@ spec:
     spec:
       containers:
         - args:
-            - bash
-            - -c
-            - chmod +x entrypoint.sh && ./entrypoint.sh
+            # - bash
+            # - -c
+            # - chmod +x entrypoint.sh && ./entrypoint.sh
           env:
             - name: APP_PORT
               valueFrom:
@@ -101,7 +101,7 @@ spec:
                 configMapKeyRef:
                   key: SCW_SECRET_KEY
                   name: env
-          image: app
+          image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
           name: app
           ports:
             - containerPort: 3000
