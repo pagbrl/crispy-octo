@@ -108,10 +108,10 @@ spec:
           resources: {}
           volumeMounts:
             - mountPath: /app
-              name: app-claim0
+              name: app-claim1
       restartPolicy: Always
       volumes:
-        - name: app-claim0
+        - name: app-claim1
           persistentVolumeClaim:
-            claimName: app-claim0
+            claimName: app-claim1
 status: {}
