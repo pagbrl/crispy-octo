@@ -92,7 +92,7 @@ docker exec -t crispy-octo-app-1 bundle exec rails db:migrate
 docker exec -t crispy-octo-app-1 bundle exec rails db:fixtures:load
 ```
 
-Then we have ```make test```
+Then we have ```make tests```
 that includes the following commands: 
 ```bash
 docker exec -t crispy-octo-app-1 bundle exec rails db:environment:set RAILS_ENV=test 

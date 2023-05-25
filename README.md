@@ -12,7 +12,7 @@ Launch http://localhost:3000
 # Step 3 
 
 The app is now running you can test it by running :
-```make test```
+```make tests```
 
 # Step 4
 
