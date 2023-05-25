@@ -1,11 +1,11 @@
 # Utilisez une image de base avec Ruby installé
 FROM ruby:3.1.3
 
+# # Définissez le répertoire de travail à l'intérieur du conteneur
+WORKDIR /app/
+
 # Copiez le fichier Gemfile et Gemfile.lock dans le conteneur
 COPY . ./
-
-# # Définissez le répertoire de travail à l'intérieur du conteneur
-WORKDIR ./
 
 # Installez les gems à l'aide de Bundler
 RUN gem install bundler && bundle install --jobs 20 --retry 5

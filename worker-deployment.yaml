@@ -1,12 +1,6 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -f docker-compose.yml
-    kompose.version: 1.28.0 (HEAD)
-  creationTimestamp: null
-  labels:
-    io.kompose.service: worker
   name: worker
 spec:
   replicas: 1
@@ -99,6 +93,11 @@ spec:
                 configMapKeyRef:
                   key: RAILS_ENV
                   name: env
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
+                  name: env
             - name: REDIS_HOST
               valueFrom:
                 configMapKeyRef:
@@ -114,15 +113,13 @@ spec:
                 configMapKeyRef:
                   key: SCW_SECRET_KEY
                   name: env
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                configMapKeyRef:
+                  key: SECRET_KEY_BASE
+                  name: env
           image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
           name: worker
           resources: {}
-          volumeMounts:
-            - mountPath: /app
-              name: worker-claim1
       restartPolicy: Always
-      volumes:
-        - name: worker-claim1
-          persistentVolumeClaim:
-            claimName: worker-claim1
 status: {}
