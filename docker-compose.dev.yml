@@ -18,7 +18,7 @@ services:
     command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
   worker:
     env_file:
-      - .env
+      - _development.env
     build: .
     volumes:
       - .:/app
@@ -32,7 +32,7 @@ services:
   # SQL Database
   db:
     env_file:
-      - .env
+      - _development.env
     image: mysql:5.7
     restart: always
     environment:
@@ -52,7 +52,7 @@ services:
   # Redis
   redis:
     env_file:
-      - .env
+      - _development.env
     image: redis:3.2.11
     ports:
       - "${REDIS_PORT}:${REDIS_PORT}"

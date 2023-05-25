@@ -2,9 +2,9 @@ version: '3'
 services:
   # Main Rails app
   app:
+    image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
     env_file:
       - .env
-    build: .
     ports:
       - "3000:3000"
     volumes:
@@ -17,9 +17,9 @@ services:
     #     condition: service_healthy
     command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
   worker:
+    image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
     env_file:
       - .env
-    build: .
     volumes:
       - .:/app
     # links:
