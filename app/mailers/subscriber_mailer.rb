@@ -1,13 +1,13 @@
 class SubscriberMailer < ApplicationMailer
   def welcome_email
-    @url = "127.0.0.1:3000"
+    @url = "#{ENV.fetch('EMAIL_FROM')}"
     @subscriber = params[:subscriber]
     Rails.logger.info "#{@subscriber.id} - #{@subscriber.email}"
     mail(to: @subscriber.email, subject: "Welcome to the blog !")
   end
 
   def article_email
-    @url = "127.0.0.1:3000"
+    @url = "#{ENV.fetch('EMAIL_FROM')}"
     @subscriber = params[:subscriber]
     @article = params[:article]
 
