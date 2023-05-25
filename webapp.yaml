@@ -20,6 +20,11 @@ spec:
           ports:
             - containerPort: 3000
           env:
+            - name: RAILS_MASTER_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: RAILS_MASTER_KEY
             - name: RAILS_ENV
               valueFrom:
                 secretKeyRef:
