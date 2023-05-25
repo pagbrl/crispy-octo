@@ -1,20 +1,24 @@
-# Utiliser une image de base contenant Ruby 3.1.3 et MySQL
 FROM ruby:3.1.3
 
-# Définir le répertoire de travail dans le conteneur
-WORKDIR /app
+# RUN apk update && apk add --no-cache \
+#   build-base \
+#   mysql-client \
+#   git
 
-# Copier le Gemfile et le Gemfile.lock dans le conteneur
-COPY Gemfile Gemfile.lock ./
+RUN apt-get update
 
-# Installer la version spécifique de Bundler (2.4.3)
-RUN gem install bundler:2.4.3
+WORKDIR /var/www/
 
-# Installer les dépendances
+# Copier les fichiers du projet dans le conteneur
+COPY ./Gemfile ./Gemfile.lock ./
+# Installation des gems
 RUN bundle install
 
-# Copier le reste des fichiers de l'application dans le conteneur
+# Copier le reste des fichiers du projet dans le conteneur
 COPY . .
 
-# Exécuter la commande pour démarrer l'application
+# Exposer le port 3000 pour l'application Rails
+EXPOSE 3000
+
+# Lancer le serveur Rails en tant que commande par défaut
 CMD ["rails", "server", "-b", "0.0.0.0"]
