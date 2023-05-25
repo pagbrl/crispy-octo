@@ -38,3 +38,4 @@
 /config/credentials/development.key
 
 .idea
+kube/secrets.yml

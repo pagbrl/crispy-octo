@@ -13,3 +13,7 @@ ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
 ADD . /app
+RUN rm -f /app/tmp/pids/server.pid
+
+EXPOSE 3000
+CMD ["bundle", "exec", "rails", "s", "-p", "3000"]
