@@ -68,16 +68,16 @@ Rails.application.configure do
   Resque.logger.formatter = Logger::Formatter.new # This is important
 
   config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address: "smtp.sendgrid.net",
-  #   port: ENV.fetch("EMAIL_PORT"),
-  #   user_name: ENV.fetch("EMAIL_USERNAME"),
-  #   password: ENV.fetch("EMAIL_PASSWORD"),
-  #   authentication: "plain",
-  #   enable_starttls_auto: true,
-  #   open_timeout: 5,
-  #   read_timeout: 5,
-  # }
+  config.action_mailer.smtp_settings = {
+    address: "smtp.sendgrid.net",
+    port: ENV.fetch("EMAIL_PORT"),
+    user_name: ENV.fetch("EMAIL_USERNAME"),
+    password: ENV.fetch("EMAIL_PASSWORD"),
+    authentication: "plain",
+    enable_starttls_auto: true,
+    open_timeout: 5,
+    read_timeout: 5,
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   config.active_job.queue_adapter     = :resque
