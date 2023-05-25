@@ -48,6 +48,8 @@ gem "net-http"
 
 gem 'resque'
 
+gem 'actionmailer'
+
 
 # Use Sass to process CSS
 # gem "sassc-rails"
