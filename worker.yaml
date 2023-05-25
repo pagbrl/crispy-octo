@@ -1,0 +1,98 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker-deployment
+  labels:
+    app: worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: worker
+          image: yahyaadlouni/crispy-octo-worker:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RAILS_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: RAILS_ENV
+            - name: MARIADB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: MARIADB_HOST
+            - name: MARIADB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: MARIADB_PORT
+            - name: QUEUE
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: QUEUE
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: REDIS_URL
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: APP_SECRET
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: EMAIL_FROM
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: EMAIL_PORT
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: EMAIL_USERNAME
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: EMAIL_PASSWORD
+            - name: WEBSITE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: webapp-secret
+                  key: WEBSITE_HOST
+            - name: MARIADB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-secret
+                  key: MARIADB_DATABASE
+            - name: MARIADB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-secret
+                  key: MARIADB_USER
+            - name: MARIADB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mariadb-secret
+                  key: MARIADB_PASSWORD
+          command: [ "bundle", "exec", "rake", "environment", "resque:work", "QUEUE=*" ]
