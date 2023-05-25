@@ -15,7 +15,7 @@ services:
     # depends_on:
     #   db:
     #     condition: service_healthy
-    command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
+    #command: bash -c "chmod +x entrypoint.sh && ./entrypoint.sh"
   worker:
     image: rg.fr-par.scw.cloud/namespace-clever-hopper/mt4-app-g5:latest
     env_file:
@@ -28,7 +28,7 @@ services:
     # depends_on:
     #   db:
     #     condition: service_healthy
-    command: bundle exec rake environment resque:work QUEUE=*
+    #command: bundle exec rake environment resque:work QUEUE=*
   # SQL Database
   # db:
   #   env_file:

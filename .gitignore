@@ -36,6 +36,7 @@
 .env
 .env.production
 _development.env
+env-configmap.yaml
 
 /config/credentials/development.key
 

@@ -20,4 +20,4 @@ CMD ["bundle", "exec", "rails", "db:create"]
 CMD ["bundle", "exec", "rails", "db:migrate"]
 CMD ["bundle", "exec", "rails", "db:fixtures:load"]
 
-CMD ["bundle", "exec", "rails", "-it", "server", "-b", "0.0.0.0"]
+CMD ["bundle", "exec", "rails", "server", "-b", "0.0.0.0"]

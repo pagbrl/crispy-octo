@@ -41,6 +41,11 @@ spec:
                 configMapKeyRef:
                   key: DATABASE_URL
                   name: env
+            - name: DB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: DB_HOST
+                  name: env
             - name: DB_NAME
               valueFrom:
                 configMapKeyRef:
@@ -90,6 +95,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: RAILS_ENV
+                  name: env
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: RAILS_HOST
                   name: env
             - name: REDIS_PORT
               valueFrom:
