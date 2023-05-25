@@ -78,6 +78,17 @@ We asked the developer to fix this issue in order for the site to be able to sca
 
 Concerning redis we had to create a resque.rb file and a new variable in the .env file called REDIS_URL that contained the URL of redis database in order for it to be functioning nominally.
 
-#### Kubernetes related solution
+#### Kubernetes and Ingress related solution
 
+### Makefile
+
+In order for the developpers and us to make things easier to start the container we have to build a Makefile.
+It contains as of now only one command ```make dev```
+This commmand executes this : 
+```bash
+    docker compose up -d --build
+	@sleep 10
+	docker exec -t crispy-octo-app-1 bundle exec rails db:migrate
+	docker exec -t crispy-octo-app-1 bundle exec rails db:fixtures:load
+```
 
