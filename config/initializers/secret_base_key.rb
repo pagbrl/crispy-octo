@@ -1,0 +1,6 @@
+Rails.application.configure do
+  # ...
+  secret_key_base = Rails.application.credentials.secret_key_base
+  # Utilisez la clé secrète comme vous le souhaitez
+  # ...
+end
