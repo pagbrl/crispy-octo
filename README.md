@@ -86,4 +86,5 @@ Une fois ces étapes terminées, votre projet "crispy-octo" sera déployé avec 
 
 ## Technical design document
 
-[Voir le TDD](./Technical Design Document.pdf)
+[![PDF](https://img.shields.io/badge/View%20PDF-Click%20Here-red)](Technical%20Design%20Document.pdf)
+
