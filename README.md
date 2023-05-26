@@ -16,7 +16,29 @@ This README documents the necessary steps to set up the application.
 
 ## Configuration
 
-* Update the .env file with your configuration 
+* Duplicate the ```.env.dist``` in ```.env``` and add your configuration : 
+
+   ```sh
+   
+   #!/usr/bin/env bash
+    RAILS_ENV=development
+    APP_SECRET=<your-app-secret>
+
+    # Définir les variables d'environnement pour le mot de passe root, le nom de la base de données, l'utilisateur et le mot de passe
+    MARIADB_DATABASE=<your-mariadb-database>
+    MARIADB_PASSWORD=<your-mariadb-password>
+    MARIADB_USER=<your-mariadb-user>
+
+    EMAIL_PORT=25
+    EMAIL_USERNAME=<your-email-username>
+    EMAIL_PASSWORD=<your-email-password>
+
+    REDIS_URL=<your-redis-url>
+
+    EMAIL_FROM=<your-email-address>
+    DATABASE_URL=mysql2://${MARIADB_USER}:${MARIADB_PASSWORD}@<your-mariadb-host>:3306/${MARIADB_DATABASE}
+
+   ```
 
 ## Database creation 
 
