@@ -83,17 +83,17 @@ spec:
                 secretKeyRef:
                   name: webapp-secret
                   key: WEBSITE_HOST
-            - name: MARIADB_DATABASE
+            - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_DATABASE
-            - name: MARIADB_USER
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_USER
-            - name: MARIADB_PASSWORD
+            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret

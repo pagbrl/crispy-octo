@@ -85,17 +85,17 @@ spec:
                 secretKeyRef:
                   name: webapp-secret
                   key: WEBSITE_HOST
-            - name: MARIADB_DATABASE
+            - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_DATABASE
-            - name: MARIADB_USER
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_USER
-            - name: MARIADB_PASSWORD
+            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
@@ -106,11 +106,9 @@ kind: Service
 metadata:
   name: webapp-service
 spec:
-  type: NodePort
   selector:
     app.kubernetes.io/name: webapp
   ports:
     - protocol: TCP
       port: 3000
       targetPort: 3000
-      nodePort: 30000

@@ -18,35 +18,36 @@ spec:
         - name: mariadb
           image: mariadb:10.6
           ports:
-            - containerPort: 3360
+            - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MYSQL_ROOT_PASSWORD
-            - name: MARIADB_DATABASE
+            - name: MYSQL_DATABASE
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_DATABASE
-            - name: MARIADB_USER
+            - name: MYSQL_USER
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_USER
-            - name: MARIADB_PASSWORD
+            - name: MYSQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: mariadb-secret
                   key: MARIADB_PASSWORD
-          command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+#          command: ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
           volumeMounts:
             - name: mariadb-data
               mountPath: /var/lib/mysql
       volumes:
         - name: mariadb-data
-          emptyDir: { }
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
 ---
 apiVersion: v1
 kind: Service
@@ -57,5 +58,5 @@ spec:
     app.kubernetes.io/name: mariadb
   ports:
     - protocol: TCP
-      port: 3360
-      targetPort: 3360
+      port: 3306
+      targetPort: 3306
