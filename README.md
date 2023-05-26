@@ -1,18 +1,23 @@
 # DOC Crispy-octo Groupe 7
 
-<h2>Utilisation de  l’environnement local : </h2>
+<h3>Utilisation de  l’environnement local : </h3>
 
 On a configuré le Dockerfile.dev et le docker-compose.yml avec les différents services utilisés (redis:alpine, mysql5.7, crispy-octo-worker, crispy-octo-app)
 Ajout des variable d’environnement dans le .env pour :  
-Envoie d’email
-Redis
-La database
+- Envoie d’email
+- Redis
+- La database
+Tests pour le chargement des  articles et des subscribers 
+Vérification de l'envoie d'email à l'inscription
 
-Docker :
+<h3>Utilisation de  l’environnement en prod : </h3>
 
+Push les images précédemment construites sur scaleway
+Création d'un cluster Kubernetes
+Création d'une Database MYSQL et Redis
+Données en dur passées en secret par la base64
 
-
-<h2>Technical Document Design :</h2>
+<h3>Technical Document Design :</h3>
 
 Composant ActionMailer
 - Le composant ActionMailer est utilisé pour l'envoi de mails automatiques tels que les newsletters. Il est intégré dans les contrôleurs pour faciliter l'envoi de mails aux abonnés.
