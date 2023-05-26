@@ -1,4 +1,3 @@
-```
 # INFO  
 ![alt text](https://i.ibb.co/0sW0q2V/membre.png "Titre de l'image")
 
@@ -57,4 +56,3 @@ It links the containers, maps the ports and volumes.
 * The crispy-resque service runs the background jobs
 * The crispy-mariadb service is the MariaDB database 
 * The crispy-redis service is the Redis cache
-```
