@@ -37,10 +37,10 @@ export KUBECONFIG=/chemin/vers/mon-kubeconfig
 Dans le répertoire du projet, appliquez les configurations de déploiement en exécutant les commandes suivantes :
 
 ```
-kubectl apply -f deployment.yaml 
-kubectl apply -f deploymentworker.yaml 
-kubectl apply -f ingress.yaml 
-kubectl apply -f service.yaml
+kubectl apply -f kubernetes/deployment.yaml 
+kubectl apply -f kubernetes/deploymentworker.yaml 
+kubectl apply -f kubernetes/ingress.yaml 
+kubectl apply -f kubernetes/service.yaml
 ```
 
 
