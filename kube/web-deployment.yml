@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: web
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web
@@ -13,9 +13,95 @@ spec:
         app: web
     spec:
       containers:
-        - name: web
-          image: us.gcr.io/micro-raceway-387720/crispy-octo-grp2:v2
+        - name: web-worker
+          image: us.gcr.io/micro-raceway-387720/crispy-octo-grp2:v1
           imagePullPolicy: Always
+          command: ["bundle", "exec", "rake", "environment", "resque:work", "QUEUE=*", "RAILS_ENV=development"]
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MYSQL_ROOT_PASSWORD
+            - name: MYSQL_USER
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MYSQL_USER
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: MYSQL_DATABASE
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_USERNAME
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PASSWORD
+            - name: DB_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_NAME
+            - name: DB_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PORT
+            - name: RAILS_MAX_THREADS
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: RAILS_MAX_THREADS
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_FROM
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_PORT
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_USERNAME
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_PASSWORD
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: REDIS_URL
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE
+        - name: web
+          image: us.gcr.io/micro-raceway-387720/crispy-octo-grp2:v1
+          imagePullPolicy: Always
+          command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0", "-e", "production"]
           ports:
             - containerPort: 3000
           env:
@@ -59,6 +145,11 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: DB_HOST
+            - name: DB_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DB_PORT
             - name: RAILS_MAX_THREADS
               valueFrom:
                 secretKeyRef:
@@ -89,3 +180,8 @@ spec:
                 secretKeyRef:
                   name: app-secrets
                   key: REDIS_URL
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: SECRET_KEY_BASE

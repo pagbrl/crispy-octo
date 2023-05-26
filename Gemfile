@@ -46,8 +46,7 @@ gem "mysql2"
 
 gem "net-http"
 
-gem 'resque'
-
+gem "resque"
 
 # Use Sass to process CSS
 # gem "sassc-rails"
