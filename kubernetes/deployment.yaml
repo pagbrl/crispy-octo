@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ruby-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ruby-app
+  template:
+    metadata:
+      labels:
+        app: ruby-app
+    spec:
+      containers:
+        - name: ruby-app
+          image: christyb/crispy-ruby
+          ports:
+            - containerPort: 3000
+          env:
+            - name: EMAIL_PORT
+              value: "25"
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-username
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-password
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: database-url
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: app-secret
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: redis-url
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-from
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: resque-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resque-worker
+  template:
+    metadata:
+      labels:
+        app: resque-worker
+    spec:
+      containers:
+        - name: resque-worker
+          image: christyb/crispy-ruby
+          env:
+            - name: EMAIL_PORT
+              value: "25"
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-username
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-password
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: database-url
+            - name: APP_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: app-secret
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: redis-url
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: ruby-app-secrets
+                  key: email-from
