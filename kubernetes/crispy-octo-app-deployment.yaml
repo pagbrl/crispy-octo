@@ -21,12 +21,24 @@ spec:
         - name: EMAIL_PORT
           value: "587"
         - name: EMAIL_USERNAME
-          value: jet@gmail.com
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_USERNAME
         - name: EMAIL_PASSWORD
-          value: fr1226
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_PASSWORD
         - name: REDIS_URL
-          value: "redis://heticteamseptredis:Heticteam7!@212.47.253.96:6379/"
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: REDIS_URL
         - name: EMAIL_FROM
           value: test@hotmail.fr
         - name: DATABASE_URL
-          value: "mysql2://production:EvdHbNm0Gpf1.@51.159.26.223:8682/rdb?pool=5"
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DATABASE_URL
