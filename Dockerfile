@@ -1,24 +1,21 @@
 FROM ruby:3.1.3
 
-# RUN apk update && apk add --no-cache \
-#   build-base \
-#   mysql-client \
-#   git
+ENV RAILS_ENV production
 
-RUN apt-get update
+# install Rails dependencies
+RUN apt-get clean all && apt-get update -qq && apt-get install -y build-essential libpq-dev \
+    curl gnupg2 apt-utils default-libmysqlclient-dev git libcurl3-dev cmake \
+    libssl-dev pkg-config openssl imagemagick file nodejs yarn
 
-WORKDIR /var/www/
+RUN mkdir /app
+WORKDIR /app
 
-# Copier les fichiers du projet dans le conteneur
-COPY ./Gemfile ./Gemfile.lock ./
-# Installation des gems
+ADD Gemfile /app/Gemfile
+ADD Gemfile.lock /app/Gemfile.lock
 RUN bundle install
 
-# Copier le reste des fichiers du projet dans le conteneur
-COPY . .
+ADD . /app
+RUN rm -f /app/tmp/pids/server.pid
 
-# Exposer le port 3000 pour l'application Rails
 EXPOSE 3000
-
-# Lancer le serveur Rails en tant que commande par défaut
-CMD ["rails", "server", "-b", "0.0.0.0"]
+# CMD ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0", "-e", "production"]

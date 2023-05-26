@@ -59,7 +59,7 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
-  logger           = ActiveSupport::Logger.new(STDOUT)
+  logger = ActiveSupport::Logger.new(STDOUT)
   logger.formatter = config.log_formatter
   config.logger = ActiveSupport::TaggedLogging.new(logger)
 
@@ -69,7 +69,7 @@ Rails.application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: "smtp.gmail.com",
     port: ENV.fetch("EMAIL_PORT"),
     user_name: ENV.fetch("EMAIL_USERNAME"),
     password: ENV.fetch("EMAIL_PASSWORD"),

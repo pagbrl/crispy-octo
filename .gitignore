@@ -33,6 +33,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-.env
+.env*
 
 /config/credentials/development.key
+
+.idea
+kube/secrets.yml
