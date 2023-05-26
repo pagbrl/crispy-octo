@@ -3,6 +3,12 @@
 <h3>Utilisation de  l’environnement en local : </h3>
 
 On a configuré le Dockerfile.dev et le docker-compose.yml avec les différents services utilisés (redis:alpine, mysql5.7, crispy-octo-worker, crispy-octo-app)<br>
+Création des images :
+- mysql
+- redis
+- crispy-octo-worker
+- crispy-octo-app<br>
+
 Ajout des variable d’environnement dans le .env pour :  
 - Envoie d’email
 - Redis
