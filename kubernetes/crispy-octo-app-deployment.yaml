@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: crispy-octo-app
+  template:
+    metadata:
+      labels:
+        app: crispy-octo-app
+    spec:
+      containers:
+      - name: crispy-octo-app
+        image: tarik45/crispy-octo-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: EMAIL_PORT
+          value: "587"
+        - name: EMAIL_USERNAME
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_USERNAME
+        - name: EMAIL_PASSWORD
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: EMAIL_PASSWORD
+        - name: REDIS_URL
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: REDIS_URL
+        - name: EMAIL_FROM
+          value: test@hotmail.fr
+        - name: DATABASE_URL
+          valueFrom:
+                secretKeyRef:
+                  name: app-secrets
+                  key: DATABASE_URL
