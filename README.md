@@ -1,6 +1,6 @@
 # DOC Crispy-octo Groupe 7
 
-<h3>Utilisation de  l’environnement local : </h3>
+<h3>Utilisation de  l’environnement en local : </h3>
 
 On a configuré le Dockerfile.dev et le docker-compose.yml avec les différents services utilisés (redis:alpine, mysql5.7, crispy-octo-worker, crispy-octo-app)
 Ajout des variable d’environnement dans le .env pour :  
@@ -15,7 +15,8 @@ Vérification de l'envoie d'email à l'inscription
 Push les images précédemment construites sur scaleway
 Création d'un cluster Kubernetes
 Création d'une Database MYSQL et Redis
-Données en dur passées en secret par la base64
+Création des manifests Kubernetes (crispy-octo-app-deployment.yaml, crispy-octo-app-service.yaml, worker.yaml)
+Données en dur passées en secret par la base64 (secret.yaml)
 
 <h3>Technical Document Design :</h3>
 
