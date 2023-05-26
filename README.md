@@ -11,3 +11,5 @@ Mais surtout l'un des choix qui n'étaient pas obligatoire est Kompose. Kompose 
 
 ## Rendus
 A l'heure actuelle, la production n'est pas encore en ligne. Le service est bien fonctionnel mais nous avons pour l'instant quelque soucis à exposer l'application en ligne. Le seul moyen pour l'instant c'est de faire un port-forward.
+
+Shema: https://www.figma.com/file/k5olQgrbDd3sEhBEv2CTGA/Untitled?type=whiteboard&node-id=0%3A1&t=XSrHqzsd5BlrP4zi-1
