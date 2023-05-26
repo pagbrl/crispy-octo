@@ -17,7 +17,7 @@ spec:
           image: cammmi/getting-started:latest
           ports:
             - containerPort: 3000
- env:
+          env:
             - name: RAILS_ENV
               valueFrom:
                 secretKeyRef:
@@ -38,23 +38,21 @@ spec:
                 secretKeyRef:
                   name: myapp-env
                   key: EMAIL_PASSWORD
-
-              - name: DATABASE_URL
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-                    key: DATABASE_URL
-              - name: REDIS_URL
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-	                  key: REDIS_URL
-              - name: EMAIL_FROM
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-	                  key: EMAIL_FROM
-
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: REDIS_URL
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_FROM
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -68,12 +66,12 @@ spec:
   template:
     metadata:
       labels:
-        app: cripsy-octo-worker
+        app: crispy-octo-worker
     spec:
       containers:
         - name: crispy-octo-worker
           image: cammmi/getting-started:latest
-                  env:
+          env:
             - name: RAILS_ENV
               valueFrom:
                 secretKeyRef:
@@ -94,19 +92,18 @@ spec:
                 secretKeyRef:
                   name: myapp-env
                   key: EMAIL_PASSWORD
-
-              - name: DATABASE_URL
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-                    key: DATABASE_URL
-              - name: REDIS_URL
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-	                  key: REDIS_URL
-              - name: EMAIL_FROM
-                valueFrom:
-                  secretKeyRef:
-                    name: myapp-env
-	                  key: EMAIL_FROM
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: REDIS_URL
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_FROM
