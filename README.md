@@ -1,24 +1,33 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Step 1
 
-Things you may want to cover:
+Create a .env with the content of .env.dist at the root directory
+then run the command bash commeand ```make dev```
 
-* Ruby version
+# Step 2
 
-* System dependencies
+Launch http://localhost:3000
 
-* Configuration
+# Step 3 
 
-* Database creation
+The app is now running you can test it by running :
+```make tests```
 
-* Database initialization
+# Step 4
 
-* How to run the test suite
+You can also set back to development the env setup when you are done by doing :
+```make env_res```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
+# Troubleshoot
 
-* ...
+If any error occurs, make sure to have both make and docker install by running ```make -v``` and ```docker -v```.
+
+If you are getting a migration error after running ```make dev``` do the following :
+
+```docker compose up -d --build```
+then ```docker ps```to make sure the containers are properly running
+followed by ```docker exec -t crispy-octo-app-1 bundle exec rails db:migrate```
+and finally : ```docker exec -t crispy-octo-app-1 bundle exec rails db:fixtures:load```
+
