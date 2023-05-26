@@ -1,24 +1,16 @@
-# README
+# DOC
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Utilisation : 
+ActionMailer pour l’envoie de mail automatique
+Redis et mysql pour la db et serveurs de cache
+Resque pour file d’attente de travaux
+Scaleway pour la plateforme d’hébergement
+Kubernetes et Docker pour serveurs dédiés ou services de déploiement en continu
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Comment on utilise l’environnement local : 
+On a configuré le Dockerfile.dev et le docker-compose.yml avec les différents services utilisés (redis:alpine, mysql5.7, crispy-octo-worker, crispy-octo-app)
+Ajout des variable d’environnement dans le .env pour :  
+Envoie d’email
+Redis
+La database
