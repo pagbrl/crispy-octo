@@ -83,3 +83,7 @@ rake db:migrate
 ```
 
 Une fois ces étapes terminées, votre projet "crispy-octo" sera déployé avec succès sur votre cluster Kubernetes.
+
+## Technical design document
+
+[Voir le TDD](Technical Design Document.pdf)
