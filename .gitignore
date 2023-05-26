@@ -38,6 +38,6 @@
 
 /config/credentials/development.key
 
-kubernetes
+
 ._mysql_data_dir
 

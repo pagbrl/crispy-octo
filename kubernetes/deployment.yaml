@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: crispy-octo
+  template:
+    metadata:
+      labels:
+        app: crispy-octo
+    spec:
+      containers:
+        - name: crispy-octo-ruby
+          image: delvlooping/crispy-octo:prod
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500M
+            limits:
+              cpu: 100m
+              memory: 500M
+          ports:
+            - containerPort: 3000
+          env:
+            - name: EMAIL_PORT
+              value: "25"
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: crispy-octo-secret
+                  key: EMAIL_FROM
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: crispy-octo-secret
+                  key: EMAIL_USERNAME
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: crispy-octo-secret
+                  key: EMAIL_PASSWORD
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: crispy-octo-secret
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: crispy-octo-secret
+                  key: REDIS_URL
+      volumes:
+        - name: crispy-octo-config
+          configMap:
+            name: crispy-octo-configmap
+

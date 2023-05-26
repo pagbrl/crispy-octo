@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: crispy-octo-ingress
+spec:
+  rules:
+    - host: octo.4158c135-935b-4170-bce7-808785b20a4f.api.k8s.fr-par.scw.cloud
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: crispy-octo-service
+                port:
+                  number: 80
