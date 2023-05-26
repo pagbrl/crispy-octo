@@ -3,7 +3,7 @@ services:
   crispy-octo-ruby:
     container_name: "crispy-octo-ruby"
     build:
-      dockerfile: "./docker/Dockerfile.dev"
+      dockerfile: "./docker/Dockerfile"
       context: "./"
     ports:
       - 3000:3000
@@ -24,7 +24,7 @@ services:
     command: bundle exec rake environment resque:work QUEUE=*
     container_name: "crispy-octo-ruby-worker"
     build:
-      dockerfile: "./docker/Dockerfile.dev"
+      dockerfile: "./docker/Dockerfile"
       context: "./"
     links:
       - "crispy-octo-mariadb:mariadb.host"

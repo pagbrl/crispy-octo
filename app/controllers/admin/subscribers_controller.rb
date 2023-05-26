@@ -15,7 +15,7 @@ class Admin::SubscribersController < ApplicationController
     @subscriber = Subscriber.new(subscriber_params)
 
     if @subscriber.save
-      redirect_to [:admin, index]
+      redirect_to admin_root_path
     else
       render :new, status: :unprocessable_entity
     end
@@ -25,7 +25,7 @@ class Admin::SubscribersController < ApplicationController
     @subscriber = Subscriber.find(params[:id])
     @subscriber.destroy
 
-    redirect_to admin_subscriber_index_path, status: :see_other
+    redirect_to admin_root_path
   end
 
   def subscriber_params
