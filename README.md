@@ -12,7 +12,7 @@ Création des images :
 Ajout des variable d’environnement dans le .env pour :  
 - Envoie d’email
 - Redis
-- La database
+- La database<br>
 Tests pour le chargement des  articles et des subscribers <br>
 Vérification de l'envoie d'email à l'inscription
 
