@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  name: crispy-octo-ingress
+spec:
+  rules:
+    - host: crispy-octo.com
+      http:
+        paths:
+          - backend:
+              service:
+                name: crispy-octo-service
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix
+  tls:
+    - hosts:
+        - crispy-octo.com
+      secretName: crispy-octo-cert
