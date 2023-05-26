@@ -48,7 +48,6 @@ gem "net-http"
 
 gem 'resque'
 
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 

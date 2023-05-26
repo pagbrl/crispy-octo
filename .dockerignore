@@ -34,7 +34,6 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 .env
-/kubernetes/secrets.yaml
 
 /config/credentials/development.key
 ._mysql_data_dir
