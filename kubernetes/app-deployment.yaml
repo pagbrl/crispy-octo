@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crispy-octo-app
+  template:
+    metadata:
+      labels:
+        app: crispy-octo-app
+    spec:
+      containers:
+        - name: crispy-octo-app
+          image: cammmi/getting-started:latest
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: app-volume
+              mountPath: /app
+      volumes:
+        - name: app-volume
+          hostPath:
+            path: /path/to/host/app

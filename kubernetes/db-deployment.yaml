@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crispy-octo-db
+  template:
+    metadata:
+      labels:
+        app: crispy-octo-db
+    spec:
+      containers:
+        - name: crispy-octo-db
+          image: mysql:5.7
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - name: db-volume
+              mountPath: /var/lib/mysql
+      volumes:
+        - name: db-volume
+          hostPath:
+            # à changer pour la prod
+            path: D:\\M1-CTO-TechLead\\crispy-octo\\._mysql_data_dir
