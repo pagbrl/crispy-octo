@@ -86,4 +86,4 @@ Une fois ces étapes terminées, votre projet "crispy-octo" sera déployé avec 
 
 ## Technical design document
 
-[Voir le TDD](Technical Design Document.pdf)
+[Voir le TDD](./Technical Design Document.pdf)
