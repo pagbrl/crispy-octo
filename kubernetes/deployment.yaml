@@ -1,0 +1,109 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crispy-octo-app
+  template:
+    metadata:
+      labels:
+        app: crispy-octo-app
+    spec:
+      containers:
+        - name: crispy-octo-app
+          image: cammmi/getting-started:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: RAILS_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: RAILS_ENV
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_PORT
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_USERNAME
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_PASSWORD
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: REDIS_URL
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_FROM
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: crispy-octo-worker
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: crispy-octo-worker
+  template:
+    metadata:
+      labels:
+        app: crispy-octo-worker
+    spec:
+      containers:
+        - name: crispy-octo-worker
+          image: cammmi/getting-started:latest
+          env:
+            - name: RAILS_ENV
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: RAILS_ENV
+            - name: EMAIL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_PORT
+            - name: EMAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_USERNAME
+            - name: EMAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_PASSWORD
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: DATABASE_URL
+            - name: REDIS_URL
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: REDIS_URL
+            - name: EMAIL_FROM
+              valueFrom:
+                secretKeyRef:
+                  name: myapp-env
+                  key: EMAIL_FROM
