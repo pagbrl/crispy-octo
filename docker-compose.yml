@@ -1,0 +1,62 @@
+version: "3"
+services:
+  crispy-octo-ruby:
+    container_name: "crispy-octo-ruby"
+    build:
+      dockerfile: "./docker/Dockerfile"
+      context: "./"
+    ports:
+      - 3000:3000
+    links:
+      - "crispy-octo-mariadb:mariadb.host"
+      - "crispy-octo-redis:redis.host"
+    volumes:
+      - "./:/crispy-octo"
+    restart: always
+    depends_on:
+      - crispy-octo-mariadb
+      - crispy-octo-redis
+    environment:
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+  crispy-octo-ruby-worker:
+    command: bundle exec rake environment resque:work QUEUE=*
+    container_name: "crispy-octo-ruby-worker"
+    build:
+      dockerfile: "./docker/Dockerfile"
+      context: "./"
+    links:
+      - "crispy-octo-mariadb:mariadb.host"
+      - "crispy-octo-redis:redis.host"
+    volumes:
+      - "./:/crispy-octo"
+    restart: always
+    depends_on:
+      - crispy-octo-mariadb
+      - crispy-octo-redis
+    environment:
+      - EMAIL_FROM=${EMAIL_FROM}
+      - EMAIL_USERNAME=${EMAIL_USERNAME}
+      - EMAIL_PASSWORD=${EMAIL_PASSWORD}
+  crispy-octo-mariadb:
+    image: "mariadb:10.6"
+    container_name: "crispy-octo-mariadb"
+    volumes:
+        - "._mysql_data_dir/:/var/lib/mysql"
+    ports:
+      - 3307:3306
+    environment:
+      - MARIADB_USER=${DATABASE_USER}
+      - MARIADB_PASSWORD=${DATABASE_PASSWORD}
+      - MARIADB_DATABASE=${DATABASE_DATABASE}
+      - MARIADB_ALLOW_EMPTY_ROOT_PASSWORD=true
+    restart: always
+  crispy-octo-redis:
+    image: "redis:alpine"
+    container_name: "crispy-octo-redis"
+    ports:
+      - 6379:6379
+    volumes:
+    - "._redis_data_dir/:/var/lib/redis"
+    restart: always

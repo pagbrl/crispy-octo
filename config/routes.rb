@@ -3,9 +3,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "articles#index"
-  get "/test", to: "application#test"
-  get "/up", to: "application#up"
-
+  
   resources :articles, only: [:show]
 
   namespace :admin do
@@ -13,4 +11,6 @@ Rails.application.routes.draw do
     resources :articles
     resources :subscribers
   end
+  match '*path', to: 'application#redirect_to_home', via: :all
+
 end

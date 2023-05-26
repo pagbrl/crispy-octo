@@ -4,4 +4,8 @@ class ApplicationController < ActionController::Base
   def up
     raise "There was an error."
   end
+
+  def redirect_to_home
+    redirect_to root_path
+  end
 end
