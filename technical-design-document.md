@@ -85,7 +85,6 @@ We asked the developer to fix this issue in order for the site to be able to sca
 
 Concerning redis we had to create a resque.rb file and a new variable in the .env file called REDIS_URL that contained the URL of redis database in order for it to be functioning nominally.
 
-#### Kubernetes and Ingress related solution
 
 ### Makefile
 
